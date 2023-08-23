@@ -1,0 +1,15 @@
+<!-- Hier werden neue Freundschaftanftagen gezeigt -->
+<modal id="modal-friend-request">
+    <div class="modal-header " >
+        <h5 class="modal-title">Freundschaftsanfragen</h5>
+        <button type="button" class="btn-close" (click)="modalService.close();"></button>
+    </div>
+    <div class="modal-body custom-background">
+  
+   <app-friend-request-list></app-friend-request-list> 
+        
+    </div>
+    <div class="modal-footer rcustom-background">
+        <button type="button" class="btn btn-secondary" (click)="modalService.close();">Close</button>
+    </div>
+  </modal>

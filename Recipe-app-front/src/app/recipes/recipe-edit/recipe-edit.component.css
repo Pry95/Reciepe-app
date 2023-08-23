@@ -1,0 +1,5 @@
+/* Färbt den rand um inputFelder */
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}

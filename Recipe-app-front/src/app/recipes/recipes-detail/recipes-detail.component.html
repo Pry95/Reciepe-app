@@ -1,0 +1,117 @@
+
+<!-- Hier wird das Akuell ausgewählte rezept Angezeigt -->
+<div class="page-container mt-3 mb-3" *ngIf="recipe">
+    <h1 class="pt-5  d-flex justify-content-center " >{{recipe.name}}</h1>
+    <div class=" mt-3 custom-underline"></div>
+    <div class="row">
+        <div class="col-md-12  mt-3 d-flex justify-content-center">
+            <img [src]="recipe.imagePath"
+             alt="{{recipe.name ? recipe.name: '' }}" 
+             class="img-responsive rounded border border-2"
+             style="max-height: 300px; max-width: 80%;  box-shadow: 0px 0px 1px white;;">
+        </div>
+    </div>
+    <div class="d-flex justify-content-end ms-3 mt-3 me-10pr tw " >  
+
+
+  <app-star-rating [rate]="false" [rating]="recipe.evaluation ? recipe.evaluation: 0"></app-star-rating>
+
+    
+    </div>
+    <div class="row">
+        <div class="   d-flex justify-content-between" >
+            <div class="dropdown ms-10pr me-10pr ">
+                <button 
+                    class="btn custom-button-style dropdown-toggle mt-3" 
+                    style="margin-left: 10%;"
+                    type="button" data-bs-toggle="dropdown" aria-expanded="false" 
+                    *ngIf="!friendMode">
+                    Rezept
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end text-start" 
+                    style="min-width: 180px; left: 50%; transform: translateX(-50%);">
+                    <li class="px-3"  
+                    (click)="onEditRecipe()"><a style="cursor: pointer;"
+                    >Rezept bearbeiten</a></li>
+
+                    <div class="dropdown-divider"></div>
+
+                    <li class="px-3" 
+                    (click)="recipeService.deleteRecipe(this.recipe.id)"><a style="cursor: pointer;" 
+                    >Rezept löschen</a></li>
+                    <div class="dropdown-divider"></div>
+
+                    <li class="px-3" 
+                    *ngIf="recipeService.numbersInList(recipe.id,toDoIds)" 
+                    (click)="recipeService.addOnToDoList(recipe.id)"><a style="cursor: pointer;"  
+                    >Zur To-do-Liste hinzufügen</a></li>
+                    
+                    <li class="px-3" 
+                    *ngIf="!recipeService.numbersInList(recipe.id,toDoIds)" 
+                    (click)="recipeService.delRecipeFromToDoList(recipe.id)"><a style="cursor: pointer;" 
+                    >Aus der To-do-Liste enfernen</a></li>
+                </ul>
+
+                <button class="btn btn-success ms-3 ms-10pr"  (click)="recipeService.copyRecipe(this.recipe)" 
+                *ngIf="friendMode && isLoggedIn" [disabled]="!recipeService.numbersInList(recipe.id,copiedIds)">
+                    <i class="bi bi-clipboard2-plus"></i>
+                </button>
+            </div>      
+            <button class="btn custom-button-style mt-3 ms-10pr " *ngIf="recipeService.numbersInList(recipe.id,ratingIds) && isLoggedIn" (click)="modalService.open('modal-rate-recipe',recipe.id)" style="margin-right: 10%;">Jetzt bewerten</button>
+        </div>       
+    </div>
+        <div class=" mt-3 custom-underline"></div>
+
+        <!-- hier wird die Zeit formatiert -->
+        <div class="row d-flex justify-content-between ">
+            <div class="col-md-4 ms-10pr mt-3 custom-text" style="margin-right: 10%;">
+                <i class="bi bi-clock-history"></i> {{ formatTime(recipe.hours) }}h: {{ formatTime(recipe.minutes) }}m Kochzeit
+            </div>
+            <div class="col-md-4 mt-3  d-flex justify-content-end me-10pr custom-text" >
+                Für( {{recipe.numberOfPeople}} )<i class="bi bi-people-fill"></i>
+            </div>
+        </div>
+        
+        
+    <div class=" mt-3  custom-underline"></div>
+    
+    <h2 class="ms-10pr mt-5 " style="margin-left: 40%;">
+        <span class="custom-underline">Zubereitung:</span>
+    </h2>
+    <!-- Hier wird dei beschreibung formatiert -->
+    <div class="row ">
+        <ul class="list-group ">
+        <div class=" col-md-12 d-flex align-items-center justify-content-center mt-3 custom-text " >
+            <span class="text-start" [innerHTML]="getFormattedDescription()"></span>
+        </div>
+    </ul>
+    </div>
+    <div class=" mt-3  custom-underline"></div>
+    <h2 *ngIf="recipe.ingredients.length > 0" class="ms-10pr mt-5" style="margin-left: 40%;">
+        <span class="custom-underline">Zutaten:</span>
+    </h2>
+    
+    <!-- Hier werden die einzelnen werte für die zutaten angezeigt und durch spann in die richtige position gebracht -->
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="mb-3  me-10pr" style="list-style-type: none; margin-left: 5%;">
+                <li *ngFor="let ingredient of recipe.ingredients">
+                    <span style="display: inline-block; width: 40%;">{{ingredientString}} <strong>{{ ingredient.name }}</strong></span>  
+                    <span style="display: inline-block; width: 40%;">{{numberString}} <strong>{{ ingredient.amount }}</strong></span> 
+                    <span style="display: inline-block; width: 100px;">{{unitString}} <strong>{{ ingredient.unit }}</strong></span>
+                    <div class=" mb-3 custom-underline"></div>
+                </li>
+            </ul>
+             
+        </div>
+    </div>
+</div>
+<!-- Hier wird das bewertungs-Modal geladen -->
+<div *ngIf="recipe">
+    <app-rating-modal [recipeId] = "recipe.id"></app-rating-modal>
+</div>
+
+
+
+
+

@@ -1,0 +1,15 @@
+.custom-button-style {
+    background-color: rgba(135, 206, 250, 0.1); 
+    border-color: darkblue;
+    color: darkblue;
+    transition: all 0.3s; 
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5); /* Gleichmäßiger weißer Schatten */
+}
+
+.custom-button-style:hover {
+    background-color: rgba(51, 169, 241, 0.3); 
+    color: black; 
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Gleichmäßiger intensiverer weißer Schatten beim Darüberfahren mit der Maus */
+}
+
+

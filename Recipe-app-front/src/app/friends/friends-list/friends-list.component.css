@@ -1,0 +1,53 @@
+.list-group-item.active {
+  background-color: lightskyblue;
+ 
+}
+
+
+
+
+
+.big-checkbox {
+  transform: scale(2);
+}
+.list-container {
+ 
+  max-height: 500px;
+  overflow-y: scroll;
+  border-radius: 5px;
+
+  box-shadow: 0px 0px 5px white;
+ 
+  
+
+  /* Versteckt die Standard-Scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer und Edge */
+}
+
+.list-container::-webkit-scrollbar {
+  width: 0px; /* Breite der benutzerdefinierten Scrollbar */
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Unsichtbare Scrollbar-Füllung */
+}
+
+
+
+.list-group {
+  padding: 0; /* Entfernt den Innenabstand der list-group */
+}
+
+
+
+.d-none {
+  display: none !important;
+}
+
+
+
+.recipe-hover:hover {
+  cursor: pointer;
+ 
+}

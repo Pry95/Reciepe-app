@@ -1,0 +1,25 @@
+<!-- Hier werden die Öffenlichen rezepte nach der Sucheingabe geladen -->
+<div class="d-flex justify-content-center">
+  <h1 class="ms-3 mt-5 mb-3 ">Endecke neue Rezepte</h1>
+</div>
+
+<div class="row">
+  <div class="mt-1 mb-3  ">
+    <div class="input-group rounded  justify-content-center">
+      <input type="search"  
+        class="form-control "
+        style="max-width: 70%;" 
+        placeholder="Entdecke neue Rezepte" 
+        aria-label="Search" 
+        aria-describedby="search-addon"
+        [(ngModel)]="inputValue"
+        (input)="searchPublicRecipes()" />
+      
+    </div>
+
+    <app-pulic-recipes-list></app-pulic-recipes-list>
+</div>
+
+
+</div>
+

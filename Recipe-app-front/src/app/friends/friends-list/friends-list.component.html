@@ -1,0 +1,54 @@
+<!-- Hier kann man einen Freund anklicken und diese Rezepte werden dann gelade -->
+<!-- Wenn man den Toggle button aktiviert wird automatisch der erste Freund auf aktiv gesetzt -->
+<div class="row"> 
+  <div *ngIf="friends.length >  0"  style="margin-left: 10%;">
+    <div class="form-check form-switch " 
+         [ngClass]="{'mt-5': !editMode}">
+           <input class="form-check-input big-checkbox" 
+             type="checkbox" 
+             id="flexSwitchCheckDefault" 
+             [checked]="isFriendActive" 
+             (change)="isFriendActive ? removeActiveFriend() : setActiveFriend(friends[0])" 
+             *ngIf="!editMode">
+              <label class="form-check-label ms-3" for="flexSwitchCheckDefault">
+            <h6 *ngIf="!editMode">
+          {{isFriendActive ? 'Freunde-Modus-deaktivieren': 'Freunde-Modus-aktivieren'}}
+        </h6>
+      </label>
+    </div>
+  </div>
+</div>
+<!-- Text wird abhängig von der anzahl von Freunden ausgewält -->
+<h2 [ngClass]="{'mt-5': friends.length <= 0}" style="margin-left: 10%; " >
+  {{friends.length > 0 ? 'Meine Freunde' : 'Sieg haben noch keine Freunde'}}
+</h2>
+<!-- Hier wird die liste von Freunden angezeigt und wenn editMode true ist wird ein button zu löschen der Freundschaft hinzugfügt und
+      und das anklicken der freunde wird deakiviert -->
+<div class="row">
+  <div class="col-md-12" style="margin-left: 10%; " >
+    <div class="list-container" [ngStyle]="{'max-width': editMode ? '400px' : '70%'}">
+      <ul class="list-group  ">
+        <li *ngFor="let friend of friends" 
+          class="list-group-item d-flex align-items-center"
+          [class.active]="activeFriend === friend" 
+          style="cursor: pointer;"
+          (click)="!editMode ? setActiveFriend(friend) : null">
+          <app-friends-list-item [friend]="friend"></app-friends-list-item>
+          <div class="ms-auto" *ngIf="editMode"> 
+            <div class="btn btn-danger" (click)="onDelFriend(friend.id)"><i class="bi bi-person-dash-fill"></i></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 
+ 

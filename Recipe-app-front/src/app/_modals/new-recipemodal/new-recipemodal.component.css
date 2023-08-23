@@ -1,0 +1,7 @@
+.custom-background{
+    background: linear-gradient(to bottom, white 0%, lightskyblue 100%);
+}
+.bg-custom{
+    /* background: linear-gradient(to bottom, white 0%, lightskyblue 100%); */
+    background-color: lightskyblue;
+}

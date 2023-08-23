@@ -1,0 +1,46 @@
+/* Globale Stile */
+h4 {
+  margin-left: 10px;
+}
+
+.list-container {
+  max-width: 70%;
+  max-height: 500px;
+  overflow-y: scroll;
+  border-radius: 5px;
+
+  box-shadow: 0px 0px 5px white;
+ 
+  
+
+  /* Versteckt die Standard-Scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer und Edge */
+}
+
+.list-container::-webkit-scrollbar {
+  width: 0px; /* Breite der benutzerdefinierten Scrollbar */
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Unsichtbare Scrollbar-Füllung */
+}
+
+
+
+.list-group {
+  padding: 0; /* Entfernt den Innenabstand der list-group */
+}
+
+.app-recipes-item {
+  width: 100%; /* Füllt die Breite der app-recipes-item aus */
+  margin-bottom: 10px; /* Optional: Abstand zwischen den Elementen */
+}
+
+.d-none {
+  display: none !important;
+}
+
+.big-checkbox {
+  transform: scale(2);
+}

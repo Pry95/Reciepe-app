@@ -1,0 +1,24 @@
+.page-container{
+    margin-left: 10px;
+    border-radius: 10px;
+
+  box-shadow: 0px 0px 15px white;
+   
+  background-color: rgb(135, 206, 250, 0.4);
+
+}
+.custom-button-style {
+  background-color: rgba(135, 206, 250, 0.1); 
+  border-color: white;
+  color: white;
+  transition: all 0.3s; 
+  box-shadow: 0 0 6px rgba(255, 255, 255, 1); /* Gleichmäßiger weißer Schatten */
+}
+
+
+
+/* Für die mittige Ausrichtung der Zutaten */
+
+  .dropdown-menu.text-start li:hover {
+    background-color: lightskyblue; /* Neue Hintergrundfarbe für Hover */
+  }

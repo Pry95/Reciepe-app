@@ -1,0 +1,14 @@
+<!-- Hier wird die rezeptId des ausgewälten rezepts in die akiveRoute geladen -->
+<a [routerLink]="[recipe?.id]" routerLinkActive="active" class="list-group-item clearfix recipe-item ">
+  <div class="d-flex align-items-center" style="height: 70px;">
+    <div class="ms1">
+      <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-fluid rounded " style="max-height: 70px; width: 70px;">
+    </div>
+    <div>
+      <h4 class="mb-1">{{ recipe.name.length > 20 ? recipe.name.slice(0, 10) + '...' : recipe.name }}</h4>
+      <p class="mb-0">{{ recipe.description.length > 20 ? recipe.description.slice(0, 15) + '...' : recipe.description }}</p>
+    </div>
+  </div>
+</a>
+
+

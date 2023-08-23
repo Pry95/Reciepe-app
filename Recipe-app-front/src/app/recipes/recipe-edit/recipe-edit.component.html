@@ -1,0 +1,165 @@
+<!-- Hier ist die ganze form -->
+<div class="row">
+    <div class="col-md-12 " *ngIf="recipe">
+        <form [formGroup]="recipeForm"(ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-success" style="margin-right: 10px;" [disabled]="!recipeForm.valid">{{editMode ? "Update": "Speichern" }}</button>
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Abbr...</button>
+                    <hr>
+                    
+                </div>
+            </div>
+            <!-- Hier wird der name angezeigt -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="from-group">
+                        <label for="name">Name</label>
+                        <input type="text" 
+                        id="name"
+                        formControlName="name"
+                        class="form-control"
+                        >
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- Wenn ein bild vorhande ist wird es angezeigt -->
+            <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
+                <div class="col-md-12">                 
+                     <img *ngIf="editMode && (imageUrl || recipe.imagePath)"  
+                    [src]="imageUrl ? imageUrl : recipe.imagePath" 
+                    alt="{{recipe.name}}" 
+                    style="margin-top: 20px; max-width: 30vw; max-height: 30vh;" >
+
+                    <img *ngIf="!editMode && imageUrl "  
+                    [src]="imageUrl " 
+                    alt="Kein Bild vorhanden" 
+                    style="margin-top: 20px; max-width: 400px; max-height: 400px;">
+                    <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileInputRef>
+                </div>
+              </div>
+              <!-- Hier wird das bild ausgewählt -->
+              <button type="button" class="btn btn-primary mb-2" (click)="fileInputRef.click()">
+                Bild auswählen
+            </button>
+            
+            <hr>
+            <!-- Hier werden die Kochzeit und die anzahl an Personen angegeben -->
+            <div class="row">
+                <div class="col-md-6">
+                  <h4>Kochzeit</h4>
+                  <div class="d-flex">
+                    <div class="form-group">
+                      <label for="hours">Stunden</label>
+                      <input type="number" id="hours" name="hours" class="form-control" formControlName="hours" min="0" max="23">
+                    </div>
+                    
+                    <div class="form-group ms-1">
+                      <label for="minutes">Minuten</label>
+                      <input type="number" id="minutes" name="minutes" class="form-control" formControlName="minutes" min="0" max="59">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <h4>Anzahl Personen</h4>
+                  <div class="form-group ms-1">
+                    <label for="numberOfPeople">Personen</label>
+                    <input type="number" id="numberOfPeople" name="numberOfPeople" class="form-control" formControlName="numberOfPeople" min="0" max="59">
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <!-- Hier ist die Beschreibung des Rezepts -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="from-group">
+                        <label for="description">Description</label>
+                        <textarea type="text" 
+                        id="description"
+                        class="form-control"
+                        formControlName="description"
+                        rows="8"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Hier wird ausgewählt welchen Öffenlichen status das Rezept hat -->
+            <div class="row">
+                <hr class="mt-3">            
+                <h4 class="text-center">Rezept Veröffentlichen</h4>            
+                <div class="d-flex justify-content-between">
+                    <div class="form-check" [style.flex-grow]="(role !== 'ROLE-MODERATOR' && role !== 'ROLE_ADMIN') ? '1' : '1'">
+                        <input class="form-check-input" type="radio" name="visibility" value="private" id="radioPrivate" formControlName="visibility">
+                        <label class="form-check-label" for="radioPrivate">
+                            Privat
+                        </label>
+                    </div>
+                    <div class="form-check" [style.flex-grow]="(role !== 'ROLE-MODERATOR' && role !== 'ROLE_ADMIN') ? '2' : '1'">
+                        <input class="form-check-input" type="radio" name="visibility" value="friends" id="radioOnlyFriends" formControlName="visibility">
+                        <label class="form-check-label" for="radioOnlyFriends">
+                            Für Freunde
+                        </label>
+                    </div>
+                    <div class="form-check" *ngIf="role === 'ROLE-MODERATOR' || role === 'ROLE_ADMIN'">
+                        <input class="form-check-input" type="radio" name="visibility" value="public" id="radioPublic" formControlName="visibility">
+                        <label class="form-check-label" for="radioPublic">
+                            Öffentlich
+                        </label>
+                    </div>
+                </div>
+            </div>
+           <hr>
+           <!-- Hier werden jetzt die Zutaten angezeigt -->
+            <div class="row">
+            <h4 class="text-center">Zutaten:</h4>
+            <div class="col-md-12" formArrayName="ingredients">
+                <div class="row mb-1" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" formControlName="name"
+                        placeholder="Name">
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" formControlName="amount"
+                        placeholder="Menge">
+                    </div>
+                    <div class="col-md-3 d-flex ">
+                        <input type="text" class="form-control" formControlName="unit"
+                        placeholder="Einheit">
+                        <div class="dropdown">
+                            <!-- Hier ist der Button mit der liste von Einheiten -->
+                            <button class="btn btn-danger dropdown-toggle me-1" 
+                            type="button" 
+                            data-bs-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false">
+                            </button>
+                            <div class="dropdown-menu ">
+                                <a class="dropdown-item" *ngFor="let option of unitOptions" (click)="selectUnit(i, option)">{{ option }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2  ">
+                        <!-- Hier weid die form entfernt -->
+                        <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)"><i class="bi bi-trash3" ></i></button>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Hier wird eine neue Form für die Zutaten erzeugt -->
+                        <button class="btn btn-success" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+                    </div>
+                </div>
+            </div>
+        </div>           
+        </form>  
+    </div>
+</div>  
+            
+            
+    
+   
+   
+

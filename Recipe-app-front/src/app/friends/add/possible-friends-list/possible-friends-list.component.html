@@ -1,0 +1,18 @@
+<!-- HIer ist die liste der Möglichen freunde und es wird der Button für das senden der Freundschaftanfragen hinzugefügt -->
+<ul class="list-group me-3 ">
+  <li *ngFor="let friend of possibleFriends" class="list-group-item friend-list-item d-flex align-items-center">
+    <app-possible-friends-item [friend]="friend"></app-possible-friends-item>
+    <div class=" ms-auto me-3"> 
+      <div>
+        <div class="friend-button btn btn-success" (click)="onFriendRequest(friend.id)" >
+          <i class="bi bi-person-plus"></i>
+        </div> 
+      </div>
+    </div>
+  </li>
+</ul>
+
+  
+  
+  
+  

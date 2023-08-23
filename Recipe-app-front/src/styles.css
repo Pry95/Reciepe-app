@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+body {
+    background-image: url('src/app/resources/lightmode.jpg');
+    background-repeat: no-repeat; /* Keine Wiederholung des Bildes */
+    background-size: cover; /* Das Bild wird proportional gestreckt, um den gesamten Hintergrund zu bedecken */
+    background-position: center center; /* Das Bild wird zentriert platziert */
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+ h6, h4 {
+    font-family: 'cursive';
+    font-style: italic;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* X-Offset, Y-Offset, Blur-Radius, Farbe */
+}
+h1,h2 {
+    font-family: 'cursive';
+    font-style: italic;
+ 
+    text-shadow: 2px 2px 4px white;
+}
+.ms-10pr{
+    margin-left: 10%;
+}
+.me-10pr{
+    margin-right: 10%;
+}
+/* Hier wird die underline gestaltet */
+.custom-underline {
+    position: relative;
+    font-family: 'cursive';
+    font-style: italic;
+    
+    text-shadow: 2px 2px 4px white;
+}
+.custom-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, white, transparent);
+}
+/* färbt den text Weiß */
+.tw{
+    color: white;
+}
+
+.custom-text{
+    font-style: italic;
+    font-size: 20px;
+    padding: 0 10%;
+    text-shadow: 2px 2px 4px white;
+}
+.invalid-input {
+    border: 1px solid red;
+  }

@@ -1,0 +1,27 @@
+<!-- Hier wird die Recipes seite gestallted -->
+<div class="row">
+    <div class="col-md-3 text-start">
+        <!-- Hier wird das Modal für das neue Rezept geöffnet -->
+        <div   class="btn btn-primary custom-button-style mt-3" style="margin-left: 14%;" (click)="modalService.open('modal-new-recipe')">Neues Rezept</div>
+        <app-recipes-list></app-recipes-list>
+    </div>
+    <div class="col-md-6 ">
+        <router-outlet></router-outlet>
+    </div>
+   
+    <div class="col-md-3 ">
+        <app-friends-list></app-friends-list>
+        <div class="row">
+            <div class="d-flex justify-content-between">
+                <!-- Hier sind die button zum entfernen und hinzufügen der Freunde -->
+                <div class="btn btn-primary custom-button-style mt-3 " style="margin-left: 10%;" (click)="modalService.open('modal-friend-seach')">Freunde <i class="bi bi-person-plus"></i></div>
+                <div class="btn  btn-primary custom-button-style mt-3"  style="margin-right: 20%;" (click)="modalService.open('modal-edit-friends')"> Freunde <i class="bi bi-pencil-square"></i></div>
+            </div>  
+        </div>       
+    </div> 
+</div>
+<!-- Hier werden die Modale initialisiert -->
+    <app-friendssearchmodal></app-friendssearchmodal>
+    <app-new-recipemodal></app-new-recipemodal>
+    <app-edit-friends-modal></app-edit-friends-modal>
+    

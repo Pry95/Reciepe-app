@@ -1,0 +1,10 @@
+<!-- Hier werden die öffentlichen rezepte -->
+<div class="row">
+  <div class="row justify-content-center"> <!-- Hier die Flexbox für die horizontale Ausrichtung -->
+    <div class="list-container mt-3 ms-3" style="margin: 0; padding: 0;">
+      <div class="list-group my-custom-rounded">
+        <app-list-item *ngFor="let recipeEl of publicRecipes; " [recipe]="recipeEl" [index]="recipeEl?.id"></app-list-item>
+      </div>
+    </div>
+  </div>
+</div>

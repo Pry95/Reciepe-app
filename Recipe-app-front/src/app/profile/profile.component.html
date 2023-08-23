@@ -1,0 +1,28 @@
+<!-- Hier werden die userinformationen angezeigt aber das bearbeiten vom user ist noch nicht bereit -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5">
+      <img [src]="currentUser.image"
+        alt="Ihr bild konnte nicht gefunden werden" 
+        class="img-responsive"
+        style="max-height: 150px; max-width: 150px; width: 100%; height: 100%; border-radius: 50%;">
+    </div>
+    <div class="col-md-9 mt-5">
+      <h1>Die bearbeitungsseite für den Benutzer kommt später</h1>
+      
+        <h3>
+          <strong>Name: {{ currentUser.username }}</strong> 
+        </h3>
+      <p>
+        <strong>Email:</strong>
+        {{ currentUser.email }}
+      </p>
+      <strong>Rolle:</strong>
+      <ul>
+        <li *ngFor="let role of currentUser.roles">
+          {{ role }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

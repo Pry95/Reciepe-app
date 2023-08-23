@@ -1,0 +1,39 @@
+<!-- Wenn rate false ist wird die aktuelle bewertung angezeigt-->
+<div *ngIf="!rate">
+    Bewertung(
+    <i *ngFor="let index of starIndexes" 
+       class="bi" 
+       [class.bi-star-fill]="index <= rating" 
+       [class.bi-star]="index > rating"
+       style=" color: gold;">
+       
+    </i>
+    )
+  </div>
+  
+  <!-- Wenn rate true ist -->
+  <!-- Jetzt kann man eine bewertung abgeben -->
+  <div *ngIf="rate" class="d-flex flex-column align-items-center">
+    <div style="display: flex;">
+        <i *ngFor="let index of starIndexes" 
+           class="bi" 
+           [class.bi-star-fill]="index <= rating" 
+           [class.bi-star]="index > rating" 
+           style="font-size: 60px; color: gold;"
+           (click)="updateRating(index)">
+        </i>
+    </div>
+    <hr >
+    <!-- Abstand hinzufügen, um den Button von den Sternen zu trennen -->
+    <div style="margin-top: 10px; display: flex; justify-content: space-between; width: 100%;">
+        <button class="btn btn-primary ms-3" (click)="onRate()">Bewerten <i class="bi bi-stars"></i></button>
+        <hr style="color: gold; height: 2px;">
+        <button class="btn btn-danger" (click)="onClose()">Abbrechen</button>
+    </div>
+</div>
+
+
+
+
+
+  

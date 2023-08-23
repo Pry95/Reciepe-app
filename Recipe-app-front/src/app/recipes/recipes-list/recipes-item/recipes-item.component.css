@@ -1,0 +1,22 @@
+
+
+  a.list-group-item.active {
+    background-color: lightskyblue; /* Ihre gewünschte Hintergrundfarbe für das aktive Element hier */
+    /* Weitere Stile für das aktive Element können hier hinzugefügt werden */
+  }
+  h4{
+    margin-left: 10px;
+    
+  }
+  p{
+    margin-left: 10px;
+  }
+ 
+  .recipe-hover:hover {
+    cursor: pointer; /* Ändert den Mauszeiger in einen Zeiger */
+  }
+ 
+
+  
+ 
+  

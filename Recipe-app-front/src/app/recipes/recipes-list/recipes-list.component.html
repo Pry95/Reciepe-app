@@ -1,0 +1,48 @@
+
+<div class="row">
+  <!-- Wenn die toDo liste größer als 0 ist wird der ToggleButton angezeigt -->
+  <ng-container *ngIf="toDoIds.length  > 0 && !friendMode">
+    <div class="d-flex align-items-center">  
+      <div class="form-check form-switch mt-5" style="margin-left: 18%;">
+        <input class="form-check-input big-checkbox" type="checkbox" id="flexSwitchCheckDefault"
+        (change)="toDoMode ? getMyRecipes() : getToDoRecipes()">
+        <label class="form-check-label ms-3" for="flexSwitchCheckDefault">
+          <h6>
+            {{ toDoMode ? 'ToDo-Modus deaktivieren' : 'ToDo-Modus aktivieren' }}
+          </h6>
+        </label>
+      </div>
+    </div>
+  </ng-container>
+  <!-- Hier wird entschieden welche Überschrift die Rezepte haben  -->
+  <div>
+    <h2 *ngIf="!friendMode && recipes.length > 0 || friendMode" class="mt-3" style="margin-left: 14%; ">
+      {{ !friendMode ? 'Meine Rezepte' : 'Freunde Rezepte' }}
+    </h2>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="list-container mt-3 ms-3" style="margin: 0; padding: 0;">
+      <div class="list-group my-custom-rounded " style="max-height: 400px;">
+        <!-- Hier wird jetzt für jedes element in reicpes in listItem erzeugt -->
+        <ng-container *ngIf="!friendMode ">
+          <app-recipes-item *ngFor="let recipeEl of recipes;" [recipe]="recipeEl" ></app-recipes-item>
+        </ng-container>
+        <ng-container *ngIf="!friendMode && recipes.length === 0" style="background-color: white;">
+          <div  style="background-color: white;">
+            <div class="mt-3 ms-3" ><h4>Sie haben noch keine Rezepte. </h4></div>
+            <div class="ms-3" ><h4>Rezept erstellen:  </h4></div>
+          </div>
+        </ng-container>
+
+        <!-- Hier wird jetzt für jedes element in friendReicpes in listItem erzeugt -->
+        <ng-container *ngIf="friendMode">
+          <app-recipes-item *ngFor="let recipeEl of friendRecipes; " [recipe]="recipeEl" ></app-recipes-item>
+          <div *ngIf="friendRecipes.length === 0" style="background-color: white;"><h4>Dieser Freund hat noch keine Rezepte</h4></div>
+          
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+

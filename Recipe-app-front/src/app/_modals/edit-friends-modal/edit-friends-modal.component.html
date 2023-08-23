@@ -1,0 +1,13 @@
+<!-- hier wird die freundschaftliste geladen damit sie beareitet werden kann -->
+<modal id="modal-edit-friends">
+    <div class="modal-header">
+        <h5 class="modal-title">Freunde entfernenen!</h5>
+        <button type="button" class="btn-close" (click)="modalService.close();"></button>
+    </div>
+    <div class="modal-body  custom-background">
+   <app-friends-list [editMode]="true"></app-friends-list>       
+    </div>
+    <div class="modal-footer rcustom-background">
+        <button type="button" class="btn btn-outline-danger" (click)="modalService.close();">Schließen</button>
+    </div>
+  </modal>

@@ -1,0 +1,12 @@
+<!-- Hier werden die Öffentlichen  -->
+<a [routerLink]="[index]" routerLinkActive="active" class="list-group-item clearfix recipe-item ">
+    <div class="d-flex align-items-center">
+      <div class="">
+        <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-fluid rounded " style="max-height: 70px; width: 70px;">
+      </div>
+      <div>
+        <h4 class="mb-1">{{ recipe.name.length > 20 ? recipe.name.slice(0, 20) + '...' : recipe.name }}</h4>
+        <p class="mb-0">{{ recipe.description.length > 20 ? recipe.description.slice(0, 20) + '...' : recipe.description }}</p>
+      </div>
+    </div>
+  </a>

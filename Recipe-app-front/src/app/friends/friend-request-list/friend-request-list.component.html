@@ -1,0 +1,17 @@
+<!-- Hier wird jetzt für jedes element der liste friendrequest ein element erzeugt und bekommt die buttons zum
+bestätigen oder ablehen -->
+<ul class="list-group me-3">
+    <li *ngFor="let friendRequest of friendRequests" class="list-group-item  d-flex align-items-center">
+      <app-friend-request-item [friendRequest]="friendRequest"></app-friend-request-item>
+      <div class="d-flex ms-auto"> 
+        <div>
+          <div class="friend-button btn btn-success " >
+            <i class="bi bi-hand-thumbs-up-fill"(click)="sendFriendRequest(friendRequest,true)" ></i>
+          </div>
+          <div class="friend-button btn btn-danger ms-2" >
+            <i class="bi bi-hand-thumbs-down-fill"(click)="sendFriendRequest(friendRequest,false)"></i>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

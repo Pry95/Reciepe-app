@@ -1,0 +1,6 @@
+.custom-background{
+    background: linear-gradient(to bottom, white 0%, lightskyblue 100%);
+}
+.rcustom-background{
+    background: linear-gradient(to top, white 0%, lightskyblue 100%);
+}
